@@ -1,11 +1,8 @@
 import { useLocalStorage } from "./useLocalStorage"
-import {useMedia} from 'react'
+import useMedia from 'use-media'
 
 export const useDarkMode = (value) => {
-    function useDarkModePreference () {
-        return useMedia(['(prefers-color-scheme: dark)'], [true], value)
-    }
-    console.log(useDarkModePreference())
-    const [darkMode, setDarkMode] = useLocalStorage('darkmode', value)
+    const preference = useMedia(["(prefers-color-scheme: dark)"], [true], value);
+    const [darkMode, setDarkMode] = useLocalStorage('darkmode', preference)
     return [darkMode, setDarkMode]
 }
